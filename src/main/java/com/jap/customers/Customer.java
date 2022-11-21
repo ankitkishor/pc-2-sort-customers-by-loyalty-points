@@ -1,12 +1,14 @@
 package com.jap.customers;
 
-public class Customer{
-private int customerId;
-private String customerName;
-private String customerGender;
-private boolean isSeniorCitizen;
-private String city;
-private int loyaltyPoints;
+import java.util.Objects;
+
+public class Customer {
+    private int customerId;
+    private String customerName;
+    private String customerGender;
+    private boolean isSeniorCitizen;
+    private String city;
+    private int loyaltyPoints;
 
     public Customer(int customerId, String customerName, String customerGender, boolean isSeniorCitizen, String city, int loyaltyPoints) {
         this.customerId = customerId;
@@ -65,8 +67,30 @@ private int loyaltyPoints;
         this.loyaltyPoints = loyaltyPoints;
     }
     // Override the toString method
+
     @Override
     public String toString() {
-        return "";
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerGender='" + customerGender + '\'' +
+                ", isSeniorCitizen=" + isSeniorCitizen +
+                ", city='" + city + '\'' +
+                ", loyaltyPoints=" + loyaltyPoints +
+                '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return getCustomerId() == customer.getCustomerId() && isSeniorCitizen() == customer.isSeniorCitizen() && getLoyaltyPoints() == customer.getLoyaltyPoints() && Objects.equals(getCustomerName(), customer.getCustomerName()) && Objects.equals(getCustomerGender(), customer.getCustomerGender()) && Objects.equals(getCity(), customer.getCity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCustomerId(), getCustomerName(), getCustomerGender(), isSeniorCitizen(), getCity(), getLoyaltyPoints());
+    }
+
 }
